@@ -4,7 +4,7 @@ Struktur folder mengikuti rubrik Dicoding.
 
 ## Jalankan preprocessing otomatis
 ```bash
-python preprocessing/automate_EkoAndriPrasetyo.py   --input namadataset_raw/creditscoring_raw.csv   --output preprocessing/creditscoring_preprocessing/credit_scoring_preprocessed.csv
+python preprocessing/automate_EkoAndriPrasetyo.py   --input creditscoring_raw/creditscoring_raw.csv   --output preprocessing/creditscoring_preprocessing/credit_scoring_preprocessed.csv
 ```
 
 ## (Opsional Advance) Workflow GitHub Actions
