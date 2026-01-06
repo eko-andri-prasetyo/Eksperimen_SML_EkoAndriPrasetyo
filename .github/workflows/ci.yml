@@ -1,0 +1,50 @@
+name: ci-train-mlflow
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "Membangun_model/**"
+      - "preprocessing/**"
+      - "creditscoring_raw/**"
+
+jobs:
+  train-model:
+    runs-on: ubuntu-latest
+    env:
+      DAGSHUB_USERNAME: ${{ secrets.DAGSHUB_USERNAME }}
+      DAGSHUB_REPO: ${{ secrets.DAGSHUB_REPO }}
+      DAGSHUB_TOKEN: ${{ secrets.DAGSHUB_TOKEN }}
+      MLFLOW_EXPERIMENT_NAME: creditscoring-MSML
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install deps
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r Membangun_model/requirements.txt
+
+      - name: Run preprocessing (ensure latest)
+        run: |
+          python preprocessing/automate_EkoAndriPrasetyo.py             --input creditscoring_raw/creditscoring_raw.csv             --output preprocessing/creditscoring_preprocessing/creditscoring_preprocessed.csv
+
+      - name: Configure optional DagsHub tracking
+        run: |
+          if [ -n "${DAGSHUB_USERNAME}" ] && [ -n "${DAGSHUB_REPO}" ] && [ -n "${DAGSHUB_TOKEN}" ]; then
+            echo "Using DagsHub tracking"
+            echo "MLFLOW_TRACKING_URI=https://dagshub.com/${DAGSHUB_USERNAME}/${DAGSHUB_REPO}.mlflow" >> $GITHUB_ENV
+            echo "MLFLOW_TRACKING_USERNAME=${DAGSHUB_USERNAME}" >> $GITHUB_ENV
+            echo "MLFLOW_TRACKING_PASSWORD=${DAGSHUB_TOKEN}" >> $GITHUB_ENV
+          else
+            echo "DagsHub secrets not provided; using local MLflow store."
+          fi
+
+      - name: MLflow run (Basic autolog)
+        run: |
+          mlflow run Membangun_model --env-manager=local
