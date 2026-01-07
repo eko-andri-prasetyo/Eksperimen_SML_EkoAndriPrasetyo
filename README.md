@@ -1,17 +1,23 @@
-# Kriteria 1 - Eksperimen & Preprocessing (creditscoring)
+# Kriteria 1 - Eksperimen & Preprocessing (Credit Scoring)
 
-## Dataset
-- **Sumber data (link):** https://github.com/eko-andri-prasetyo/Eksperimen_SML_EkoAndriPrasetyo/blob/main/creditscoring_raw/creditscoring_raw.csv
-- **File raw:** `creditscoring_raw/creditscoring_raw.csv`
-- **Catatan:** Dataset bersifat **synthetic/dibuat untuk kebutuhan latihan submission**.
+Repo ini berisi notebook eksperimen **sesuai Template Eksperimen MSML** (struktur 1–5, dan tahap terakhir adalah **5. Data Preprocessing**).
 
-## Notebook Eksperimen (mengikuti Template Dicoding)
-- `notebook.ipynb` (struktur 1–5 sesuai Template Eksperimen MSML)
+## Dataset yang digunakan
+Dataset: **Credit Scoring (synthetic)** (format CSV)
 
-## Folder & File
-- Raw folder: `creditscoring_raw/`
-- Raw file  : `creditscoring_raw/creditscoring_raw.csv`
+- **Sumber data (tautan):**
+  - GitHub (view): https://github.com/eko-andri-prasetyo/Eksperimen_SML_EkoAndriPrasetyo/blob/main/creditscoring_raw/creditscoring_raw.csv
+  - GitHub (raw): https://raw.githubusercontent.com/eko-andri-prasetyo/Eksperimen_SML_EkoAndriPrasetyo/main/creditscoring_raw/creditscoring_raw.csv
+- **Lokasi file raw di repo:** `creditscoring_raw/creditscoring_raw.csv`
+- **Target:** `target` (0 = tidak default, 1 = default)
 
+> Catatan: Dataset ini bersifat **synthetic** untuk kebutuhan latihan/proyek dan disediakan di repo agar reviewer dapat mengaksesnya dengan mudah.
+
+## Notebook yang diperiksa reviewer
+- `notebook.ipynb` (root)
+- `preprocessing/Eksperimen_EkoAndriPrasetyo.ipynb`
+
+## Output preprocessing
 - Output folder: `preprocessing/creditscoring_preprocessing/`
 - Output file  : `preprocessing/creditscoring_preprocessing/creditscoring_preprocessed.csv`
 
